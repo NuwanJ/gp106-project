@@ -1,0 +1,23 @@
+
+function plotGame(ply1, ply2)
+%ply1, ply2
+
+pos = [1 3 5 1 3 5 1 3 5];
+
+for i=1:9
+    col = 1 + 2*mod(i-1,3);
+    row = 1 + 2*floor((i-1)/3);
+    
+    if (ply1(i)==1)
+        %disp([col row]);
+        plot(col, row, 'o'); 
+    end
+    
+    if (ply2(i)==1)
+        disp([col row]);
+        plot(col, row, 'x'); 
+    end
+    
+end
+
+return
