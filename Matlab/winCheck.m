@@ -16,5 +16,10 @@ function w = winCheck(ply)
     w = w + (trace(p)==3);
     w = w + (trace(pt)==3);
     
-    w = (w==1);
+    if (w >0)
+        w=1;
+    else 
+        w = 0;
+    end
+    
 return

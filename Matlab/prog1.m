@@ -8,7 +8,8 @@
 %Arduino must me connected before running the code
 %a = arduino('COM14');
 
-
+clf;    %clean plot
+clc;    %clean CLI
 separator = ['|',  '|', '|']';
 
 debug = 1;                 % Debug should 1 for arduino
@@ -23,6 +24,7 @@ ply1 = zeros(3,3);         % Player1's input
 ply2 = zeros(3,3);         % Player2's input
 player = 2;
 run = 1;
+counter = 0;
 
 if (debug==0)
     for i = 1:9
@@ -54,11 +56,6 @@ while run==1
               ply1(in) = 1;
               ply2(in) = -1;
               status(in) = 1- status(in);
-              
-              if (winCheck(ply1))
-                 disp('Player 1 Win !!!');
-                 run=0;
-              end
           end
           
        % Player 2's turn
@@ -67,21 +64,10 @@ while run==1
              %If player 2 already marked the position 
              disp(' Player 2 already marked it !!!');
              player = 1;
-             
-             if (winCheck(ply1))
-                 disp('Player 1 Win !!!');
-                 run=0;
-             end
-              
           else
               ply1(in) = -1;
               ply2(in) = 1;
               status(in) = 1- status(in);
-              
-              if (winCheck(ply2))
-                 disp('Player 2 Win !!!');
-                 run=0;
-              end
           end
        end
        
@@ -91,6 +77,22 @@ while run==1
        % Display Hardware and Software outputs
        if (debug==0) digitalWrite(a, pins(in), status(in));end
        disp([num2str(status')  separator num2str(ply1')  separator num2str(ply2')]);
+       
+       
+        if (winCheck(ply2)==1)
+            disp('Player 2 Win !!!');
+            run=0;
+        elseif (winCheck(ply1)==1)
+            disp('Player 1 Win !!!');
+            run=0;
+            
+        elseif counter > 9
+            run = 0;
+            disp('Draw !!!');
+        else
+            run=1;
+            counter = counter +1;
+        end
    end
 end
 
