@@ -10,14 +10,13 @@ for i=1:9
     
     if (ply1(i)==1)
         %disp([col row]);
-        plot(col, row, 'o'); 
+        plot(col, row, 'o', 'LineWidth', 30); 
     end
     
     if (ply2(i)==1)
         disp([col row]);
-        plot(col, row, 'x'); 
+        plot(col, row, 'x', 'LineWidth', 50,'color', 'red'); 
     end
-    
 end
 
 return

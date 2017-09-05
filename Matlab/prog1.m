@@ -50,9 +50,10 @@ while run==1
        if (player==1)
           if (ply2(in)==1)
              %If player 2 already marked the position 
-             disp(' Player 2 already marked it !!! Try again.');
+             disp(' Player 2 already marked it !!! Try another one.');
              player =2;
           else
+              % Updating vectors 
               ply1(in) = 1;
               ply2(in) = -1;
               status(in) = 1;
@@ -62,27 +63,31 @@ while run==1
        else
           if (ply1(in)==1)
              %If player 2 already marked the position 
-             disp(' Player 2 already marked it !!!');
+             disp(' Player 2 already marked it !!! Try another one.');
              player = 1;
           else
+              % Updating vectors 
               ply1(in) = -1;
               ply2(in) = 1;
               status(in) = 1;
           end
        end
        
-       
        % Write a code for check win 
         plotGame(ply1, ply2);
+        
        % Display Hardware and Software outputs
-       if (debug==0) digitalWrite(a, pins(in), status(in));end
-       disp([num2str(status')  separator num2str(ply1')  separator num2str(ply2')]);
-       
-       
+       if (debug==0) 
+           digitalWrite(a, pins(in), status(in));
+           disp([num2str(status')  separator num2str(ply1')  separator num2str(ply2')]);
+       end
+      
         if (winCheck(ply2)==1)
+            title('Player 2 Win !!!','fontsize',20,'color', 'red');
             disp('Player 2 Win !!!');
             run=0;
         elseif (winCheck(ply1)==1)
+            title('Player 1 Win !!!','fontsize',20,'color', 'red');
             disp('Player 1 Win !!!');
             run=0;
             
@@ -95,17 +100,6 @@ while run==1
         end
    end
 end
-
-%{
-
-1  1  1| 1 -1  1|-1  1 -1
-1  1  0|-1  1  0| 1 -1  0
-1  0  1| 1  0 -1|-1  0  1
-
-
-
-
-%}
 
 
 
