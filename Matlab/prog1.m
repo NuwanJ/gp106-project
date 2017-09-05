@@ -55,7 +55,7 @@ while run==1
           else
               ply1(in) = 1;
               ply2(in) = -1;
-              status(in) = 1- status(in);
+              status(in) = 1;
           end
           
        % Player 2's turn
@@ -67,7 +67,7 @@ while run==1
           else
               ply1(in) = -1;
               ply2(in) = 1;
-              status(in) = 1- status(in);
+              status(in) = 1;
           end
        end
        
@@ -86,7 +86,7 @@ while run==1
             disp('Player 1 Win !!!');
             run=0;
             
-        elseif counter > 9
+        elseif sum(sum(status))==9
             run = 0;
             disp('Draw !!!');
         else
