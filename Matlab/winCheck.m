@@ -1,23 +1,27 @@
 
 
 function w = winCheck(ply)
-    p = ply;
     w = 0;
-    
+    p = ply;
     s = sum(p);         % |
-    pt = p';
+    pt = transpose(p);
     st = sum(pt);       % _
     
     for i = 1:3 
         w = w + (s(i)==3);
         w = w + (st(i)==3);    
     end
+   
+    if (trace(p)==3)
+        w =w +1; 
+    end
     
-    w = w + (trace(p)==3);
-    w = w + (trace(pt)==3);
+    if (trace(fliplr(p))==3)
+        w =w +1; 
+    end
     
     if (w >0)
-        w=1;
+        w = 1;
     else 
         w = 0;
     end

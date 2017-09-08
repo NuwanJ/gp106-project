@@ -83,15 +83,16 @@ while run==1
        end
       
         if (winCheck(ply2)==1)
-            title('Player 2 Win !!!','fontsize',20,'color', 'red');
-            disp('Player 2 Win !!!');
+            title('Player 2 Wins !!!','fontsize',20,'color', 'red');
+            disp('Player 2 Wins !!!');
             run=0;
         elseif (winCheck(ply1)==1)
-            title('Player 1 Win !!!','fontsize',20,'color', 'red');
-            disp('Player 1 Win !!!');
+            title('Player 1 Wins !!!','fontsize',20,'color', 'red');
+            disp('Player 1 Wins !!!');
             run=0;
             
         elseif sum(sum(status))==9
+            title('Draw !!!','fontsize',20,'color', 'red');
             run = 0;
             disp('Draw !!!');
         else
