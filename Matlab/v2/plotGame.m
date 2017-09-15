@@ -12,7 +12,6 @@ for i=1:9
     end
     
     if (ply2(i)==1)
-        disp([col row]);
         plot(col, row, 'x', 'LineWidth', 50,'color', 'red'); 
     end
 end

@@ -12,16 +12,16 @@
 
 clf;    %clean plot
 clc;    %clean CLI
-debug = 1;                 % Debug should 1 for test with arduino
+debug = 0;                 % Debug should 0 for test with arduino
 
-pins = [ 2 3 4; 5 6 7; 8 9 10];
+pins =[8 9 10; 5 6 7; 2 3 4]; 
 drawBoard();                %draw the playing area
 
 status = zeros(3,3);       % Resultant input
 ply1 = zeros(3,3);         % Player1's input
 ply2 = zeros(3,3);         % Player2's input
 
-player = 2;run = 1;counter = 0;blink = 0;
+player = 2; run = 1; counter = 0;
 
 if (debug==0)
     for i = 1:9             % Set all LED pins as OUTPUTs and set as LOW
@@ -38,7 +38,7 @@ while run==1
        in = input('Player 2: ');
    end
    
-   player = 1 + (1- (player-1));   % Change active player to 1 or 2
+   player = 1 + (1- (player-1));   % Switch between player 1 & 2
    
    if(in>0 && in<10)            %% check input in valid range
        
@@ -56,7 +56,7 @@ while run==1
        % Player 2's turn
        else
           if (ply1(in)==1)      %If player 2 already marked the position 
-             disp(' Player 2 already marked it !!! Try another one.');
+             disp(' Player 1 already marked it !!! Try another one.');
              player = 1;
           else                  % Updating vectors 
               ply1(in) = -1;
@@ -70,13 +70,13 @@ while run==1
         
        % Display Hardware and Software outputs
        if (debug==0) 
-           for ii = 1:9
+           for i = 1:9
                if (ply1(i)==1)
-                   digitalWrite(a, pins(ii), 1);
+                   digitalWrite(a, pins(i), 1);
                elseif (ply2(i)==1)
-                   digitalWrite(a, pins(ii), 2); % Special patch to blink this.
+                   digitalWrite(a, pins(i), 2); % Special patch to blink this.
                else
-                   digitalWrite(a, pins(ii), 0);
+                   digitalWrite(a, pins(i), 0);
                end
            end
        end
