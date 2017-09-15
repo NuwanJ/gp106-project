@@ -14,7 +14,7 @@ clf;    %clean plot
 clc;    %clean CLI
 debug = 1;                 % Debug should 1 for test with arduino
 
-pins =[8 9 10; 5 6 7; 2 3 4]; 
+pins = [8 9 10; 5 6 7; 2 3 4]; 
 drawBoard();                %draw the playing area
 
 status = zeros(3,3);       % Resultant input
@@ -81,7 +81,7 @@ while run==1
            end
        end
       
-        if (winCheck(ply2)==1)
+       if (winCheck(ply2)==1)
             title('Player 2 Wins !!!','fontsize',20,'color', 'red');
             disp('Player 2 Wins !!!');
             run=0;
