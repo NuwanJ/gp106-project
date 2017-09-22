@@ -3,13 +3,18 @@
 % GP106 - COM Project
 % Update : 22/09/2017
 % Written by : 
-%     Jaliyagoda A.J.N.M. 
-%     Irfan M.M.M.
-%     Ishanthi S.
+%     Jaliyagoda A.J.N.M. (E/15/140)
+%     Irfan M.M.M. (E/15/138)
+%     Ishanthi S. (E/15/139)
 
+% Latest version of the source code will be  available at 
+% https://github.com/NuwanJ/gp106-project
+
+% ----- SPECIAL NOTICE ---------------------------------------------- 
 % This code will be only works with the special firmware exist in
 % ../ArduinoIO/ folder. And also need to flash arduino firmware to the board,
 % that will be found on ../ArduinoIO/adio_blink/ folder
+% -------------------------------------------------------------------
 
 % Arduino must be connected before running the code
 % a = arduino('COM14');
