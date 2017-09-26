@@ -1,11 +1,11 @@
 
-function inPins = readPins()
+function inPins = readPins(a)
 
     analogRange = linspace(0,1023,7);
     inPins =0;
 
     for readBtn = 1:3
-        reading = analogRead(a, readBtn);
+        reading = analogRead(a, 2+ readBtn);
         
         if (reading>=analogRange(1) && reading<analogRange(2))
             inPins = 3*(readBtn-1) + 1;

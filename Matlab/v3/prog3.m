@@ -1,5 +1,4 @@
 
-
 % GP106 - COM Project
 % Update : 28/08/2017
 % Written by : 
@@ -12,9 +11,14 @@
 
 clf;    %clean plot
 clc;    %clean CLI
-debug = 1;                 % Debug should 1 for test with arduino
+debug = 0;                 % Debug should 1 for test with arduino
 
-pins = [8 9 10; 5 6 7; 2 3 4]; 
+%pins = [8 9 10; 5 6 7; 2 3 4]; 
+pins = [4,3,2,7,6,5,12,9,8]; 
+pinG = 10;
+pinB = 11;
+pinR = 13;
+
 drawBoard();                %draw the playing area
 
 status = zeros(3,3);       % Resultant input
@@ -26,9 +30,19 @@ player = 2;run = 1;counter = 0;
 if (debug==0)
     for i = 1:9             % Set all LED pins as OUTPUTs and set as LOW
        pinMode(a, pins(i), 'OUTPUT') ;
-       digitalWrite(a, pins(i),0);
+       digitalWrite(a, pins(i),1);
     end
+    
+    pinMode(a, pinR, 'OUTPUT');
+    pinMode(a, pinG, 'OUTPUT');
+    pinMode(a, pinB, 'OUTPUT');
+
+    digitalWrite(a, pinR , 0);
+    digitalWrite(a, pinG , 0);
+    digitalWrite(a, pinB , 0);
 end
+
+ digitalWrite(a, pinB , 1);
 
 while run==1
     
@@ -72,11 +86,11 @@ while run==1
        if (debug==0) 
            for i = 1:9
                if (ply1(i)==1)
-                   digitalWrite(a, pins(i), 1);
+                   digitalWrite(a, pins(i), 0);
                elseif (ply2(i)==1)
                    digitalWrite(a, pins(i), 2); % Special patch to blink this.
                else
-                   digitalWrite(a, pins(i), 0);
+                   digitalWrite(a, pins(i), 1);
                end
            end
        end
