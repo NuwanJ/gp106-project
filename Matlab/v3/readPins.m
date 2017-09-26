@@ -5,7 +5,7 @@ function inPins = readPins(a)
     inPins =0;
 
     for readBtn = 1:3
-        reading = analogRead(a, 2+ readBtn);
+        reading = analogRead(a, 6 - readBtn);
         
         if (reading>=analogRange(1) && reading<analogRange(2))
             inPins = 3*(readBtn-1) + 1;

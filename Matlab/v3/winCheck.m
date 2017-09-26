@@ -10,11 +10,13 @@ function [w,winner] = winCheck(ply)
     
     for i = 1:3 
         if (s(i)==3) % | 
+            w = 1;
             winner(3*(i-1)+1) = 1;
             winner(3*(i-1)+2) = 1;
             winner(3*(i-1)+3) = 1;
             
         elseif (st(i)==3) % _
+            w = 1;
             winner(i) = 1;
             winner(i+3) = 1;
             winner(i+6) = 1;
