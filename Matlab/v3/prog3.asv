@@ -51,7 +51,7 @@ if (debug==0)
     digitalWrite(a, pinB , 0);
 end
 
- digitalWrite(a, pinB , 1);
+ digitalWrite(a, pinG , 1);
 
 while run==1
    
@@ -134,14 +134,20 @@ while run==1
            end
             
            if(run==0)
-              digitalWrite(a, pinG, 1);
-              digitalWrite(a, pinR, 0);
+               
+              digitalWrite(a, pinG, 0);
+              digitalWrite(a, pinB, 1);
               for k=1:9
-                  st = 
-                 digitalWrite(a, pins(k), ply1m(k) + ply2m(k)); 
+                 st =  1 - (ply1m(k) + ply2m(k));
+                 if st == 0
+                     st = 2;
+                 end
+                 digitalWrite(a, pins(k), st); 
               end
+              
+              pause(1);
            end
        end
-       pause(1);
+       pause(.5);
    end
 end

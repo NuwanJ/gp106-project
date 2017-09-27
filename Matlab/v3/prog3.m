@@ -132,17 +132,8 @@ while run==1
                 run=1;
                 counter = counter +1;
            end
-            
-           if(run==0)
-              digitalWrite(a, pinG, 1);
-              digitalWrite(a, pinR, 0);
-              for k=1:9
-                  st =  1 - (ply1m(k) + ply2m(k));
-                  fprintf('%s', st);
-                 digitalWrite(a, pins(k), st); 
-              end
-           end
+           
        end
-       pause(1);
+       pause(.5);
    end
 end
