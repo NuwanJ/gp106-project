@@ -1,0 +1,13 @@
+
+************************************************************************************
+* Group B11
+************************************************************************************
+
+Irfan M.M.M. (E/15/138)
+Ishanthi S. (E/15/139)
+Jaliyagoda A.J.N.M. (E/15/140)
+
+
+NOTE : 
+	We used RGB LEDs while making PCB for bonus milestone, 
+	ut we will demonstrate 'Milestone II' by only using mono color.
