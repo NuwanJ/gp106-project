@@ -1,6 +1,6 @@
 
 % GP106 - COM Project
-% Update : 22/09/2017
+% Update : 28/09/2017
 % Written by : 
 %     Jaliyagoda A.J.N.M. (E/15/140)
 %     Irfan M.M.M. (E/15/138)
@@ -20,7 +20,7 @@
 
 clf;    %clean plot
 clc;    %clean CLI
-debug = 0;                 % Debug should 1 for test with arduino
+debug = 0;                 % If debug=1, arduino board not necessary to connect
 
 %pins = [8 9 10; 5 6 7; 2 3 4]; 
 pins = [4,3,2,7,6,5,12,9,8]; 
@@ -51,7 +51,7 @@ if (debug==0)
     digitalWrite(a, pinB , 0);
 end
 
- digitalWrite(a, pinG , 1);
+ digitalWrite(a, pinB , 1);
 
 while run==1
    
@@ -132,21 +132,7 @@ while run==1
                 run=1;
                 counter = counter +1;
            end
-            
-           if(run==0)
-               
-              digitalWrite(a, pinG, 0);
-              digitalWrite(a, pinB, 1);
-              for k=1:9
-                 st =  1 - (ply1m(k) + ply2m(k));
-                 if st == 0
-                     st = 2;
-                 end
-                 digitalWrite(a, pins(k), st); 
-              end
-              
-              pause(1);
-           end
+           
        end
        pause(.5);
    end

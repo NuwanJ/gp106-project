@@ -51,7 +51,7 @@ if (debug==0)
     digitalWrite(a, pinB , 0);
 end
 
- digitalWrite(a, pinG , 1);
+ digitalWrite(a, pinB , 1);
 
 while run==1
    
