@@ -6,7 +6,7 @@
 %     Irfan M.M.M. (E/15/138)
 %     Ishanthi S. (E/15/139)
 
-% Latest version of the source code will be  available at 
+% Latest version of the source code is available at 
 % https://github.com/NuwanJ/gp106-project
 
 % ----- SPECIAL NOTICE ---------------------------------------------- 
