@@ -18,17 +18,18 @@
 % Arduino must be connected before running the code
 % a = arduino('COM14');
 
-clf;    %clean plot
-clc;    %clean CLI
-debug = 1;                 % 1 = no need arduino
-drawP = 1;                   % 1 = visual enable
-playWithCom = 1;
-
 %pins = [8 9 10; 5 6 7; 2 3 4]; 
 pins = [4,3,2,7,6,5,12,9,8]; 
 pinG = 10;
 pinB = 11;
 pinR = 13;
+
+clf;    %clean plot
+clc;    %clean CLI
+debug = 0;                 % 1 = no need arduino
+drawP = 1;                   % 1 = visual enable
+playWithCom = 0;
+ledColor = pinG;
 
 if drawP
     drawBoard();                %draw the playing area
@@ -50,10 +51,65 @@ if (debug==0)
     pinMode(a, pinG, 'OUTPUT');
     pinMode(a, pinB, 'OUTPUT');
 
+    % Welcome Pattern ---------------------------------------
+    
+    if (0)
+        digitalWrite(a, pinR , 0);
+        digitalWrite(a, pinG , 1);
+        digitalWrite(a, pinB, 0);
+
+        %{
+        pat1 = [6 9 8 7 4 1 2 3 6 9 8 7 4 1 2 3];
+
+        for i=1:length(pat1)
+           digitalWrite(a, pins(pat1(i)), 0);
+           pause(.4 - (0.025*i));
+           digitalWrite(a, pins(pat1(i)), 1);
+        end
+
+        digitalWrite(a, pinG , 0);
+        digitalWrite(a, pinB, 1);
+
+        for i=1:length(pat1)
+           digitalWrite(a, pins(pat1(i)), 0);
+           pause(.02 + 0.02*i);
+           digitalWrite(a, pins(pat1(i)), 1);
+        end
+
+        for i=1:9
+            digitalWrite(a, pins(i), 0);
+        end
+        pause(2);
+        %}
+
+        digitalWrite(a, pinR , 0);
+        digitalWrite(a, pinG , 0);
+        digitalWrite(a, pinB , 0);
+
+        for i=1:9
+            digitalWrite(a, pins(i), 0);
+        end
+
+        digitalWrite(a, ledColor, 1);
+        pause(1);
+
+        for i = 250:-5:1
+           analogWrite(a, ledColor, i); 
+           pause(.04);
+        end
+
+        for i=1:9
+            digitalWrite(a, pins(i), 1);
+        end
+    end
+    %-----------------------------------------------
+    
     digitalWrite(a, pinR , 0);
     digitalWrite(a, pinG , 0);
     digitalWrite(a, pinB , 0);
-    digitalWrite(a, pinG , 1);
+    
+    digitalWrite(a, ledColor , 1);
+  
 end
 
 while run==1
@@ -136,10 +192,31 @@ while run==1
                 end
                 
                 disp('Player 1 Wins !!!');
+                
+                pause(2);
+                for i=1:9
+                   if (ply1m(i)==1)
+                       digitalWrite(a, pins(i), 2); 
+                   else
+                       digitalWrite(a, pins(i), 1); 
+                   end
+                 end
+                
                 run=0;
             elseif (ply2w==1)
                 if(drawP)
                     title('Player 2 Wins !!!','fontsize',20,'color', 'red');
+                end
+                
+                disp('Player 2 Wins !!!');
+                
+                pause(2);
+                for i=1:9
+                   if (ply2m(i)==1)
+                       digitalWrite(a, pins(i), 2); 
+                   else
+                       digitalWrite(a, pins(i), 1); 
+                   end
                 end
                 
                 disp('Player 2 Wins !!!');
@@ -149,6 +226,14 @@ while run==1
                 if(drawP)
                     title('Draw !!!','fontsize',20,'color', 'red');
                 end
+                
+                disp('Draw !!!');
+                
+                pause(2);
+                for i=1:9
+                   digitalWrite(a,pins(i), 2); 
+                end
+                
                 run = 0;
                 disp('Draw !!!');
             else

@@ -1,4 +1,8 @@
 
+function k = pattern1()
+
+k = 0;
+
 pinG = 10;
 pinB = 11;
 pinR = 13;
@@ -24,3 +28,6 @@ for i=1:length(pat1)
    pause(.1);
    digitalWrite(a, pins(pat1(i)), 1);
 end
+
+
+return

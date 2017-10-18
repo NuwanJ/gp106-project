@@ -62,5 +62,5 @@ end
    digitalWrite(a, pinB, 1);
 
 for i=1:9
-    digitalWrite(a, pins(i),0);
+    if (ply1m(i)==1)digitalWrite(a, pins(i),0);end
 end

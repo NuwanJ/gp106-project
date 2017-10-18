@@ -82,11 +82,11 @@ if sum(pos)>0
    i=8;
    if pos(i)==1
         if ply(1,3)==0
-            sug(i) = 3;
+            sug(i) = 7;
         elseif ply(2,2)==0
             sug(i) = 5;
         elseif ply(3,1)==0
-            sug(i) = 8;    
+            sug(i) = 3;    
         end
             
        %{
