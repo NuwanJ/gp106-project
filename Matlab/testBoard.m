@@ -17,6 +17,7 @@ digitalWrite(a, pinR , 0);
 digitalWrite(a, pinG , 0);
 digitalWrite(a, pinB , 0);
 
+%{
 pattern1 = [1 2 3 6 9 8 7 4 5];
 digitalWrite(a, pinG, 1);
 
@@ -55,4 +56,11 @@ while 1
 
 end
 
+%}
 
+   digitalWrite(a, pinG, 0);
+   digitalWrite(a, pinB, 1);
+
+for i=1:9
+    digitalWrite(a, pins(i),0);
+end

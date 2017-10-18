@@ -1,6 +1,6 @@
 
 % GP106 - COM Project
-% Update : 22/09/2017
+% Update : 18/10/2017
 % Written by : 
 %     Jaliyagoda A.J.N.M. (E/15/140)
 %     Irfan M.M.M. (E/15/138)
@@ -20,7 +20,9 @@
 
 clf;    %clean plot
 clc;    %clean CLI
-debug = 0;                 % Debug should 1 for test with arduino
+debug = 1;                 % 1 = no need arduino
+drawP = 1;                   % 1 = visual enable
+playWithCom = 1;
 
 %pins = [8 9 10; 5 6 7; 2 3 4]; 
 pins = [4,3,2,7,6,5,12,9,8]; 
@@ -28,7 +30,9 @@ pinG = 10;
 pinB = 11;
 pinR = 13;
 
-drawBoard();                %draw the playing area
+if drawP
+    drawBoard();                %draw the playing area
+end
 
 status = zeros(3,3);       % Resultant input
 ply1 = zeros(3,3);         % Player1's input
@@ -49,14 +53,18 @@ if (debug==0)
     digitalWrite(a, pinR , 0);
     digitalWrite(a, pinG , 0);
     digitalWrite(a, pinB , 0);
+    digitalWrite(a, pinG , 1);
 end
-
- digitalWrite(a, pinG , 1);
 
 while run==1
    
    if(debug==0)
-       in = readPins(a);
+       if playWithCom ==1
+           in = computeNext(ply1, ply2);
+       else
+           in = readPins(a);
+       end
+               
    else
        if (player==2)
             in = input('Player 1: ');
@@ -86,6 +94,7 @@ while run==1
 
            % Player 2's turn
            else
+               
               if (ply1(in)==1)      %If player 2 already marked the position 
                  disp(' Player 2 already marked it !!! Try another one.');
                  player = 1;
@@ -97,7 +106,9 @@ while run==1
            end
 
            % Write a code for check win 
-            plotGame(ply1, ply2);
+           if(drawP) 
+               plotGame(ply1, ply2); 
+           end
 
            % Display Hardware and Software outputs
            if (debug==0) 
@@ -116,16 +127,24 @@ while run==1
            [ply2w,ply2m] = winCheck(ply2);
            
            if (ply1w==1)
-                title('Player 1 Wins !!!','fontsize',20,'color', 'red');
+                if(drawP)
+                    title('Player 1 Wins !!!','fontsize',20,'color', 'red');
+                end
+                
                 disp('Player 1 Wins !!!');
                 run=0;
             elseif (ply2w==1)
-                title('Player 2 Wins !!!','fontsize',20,'color', 'red');
+                if(drawP)
+                    title('Player 2 Wins !!!','fontsize',20,'color', 'red');
+                end
+                
                 disp('Player 2 Wins !!!');
                 run=0;
 
             elseif sum(sum(status))==9
-                title('Draw !!!','fontsize',20,'color', 'red');
+                if(drawP)
+                    title('Draw !!!','fontsize',20,'color', 'red');
+                end
                 run = 0;
                 disp('Draw !!!');
             else
