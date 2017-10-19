@@ -112,27 +112,68 @@ while run==1
                end
            end
 
+           
            [ply1w,ply1m] = winCheck(ply1);
            [ply2w,ply2m] = winCheck(ply2);
            
            if (ply1w==1)
-                title('Player 1 Wins !!!','fontsize',20,'color', 'red');
+                if(drawP)
+                    title('Player 1 Wins !!!','fontsize',20,'color', 'red');
+                end
+                
+                if(debug==0)
+                    pause(2);
+                    for i=1:9
+                       if (ply1m(i)==1)
+                           digitalWrite(a, pins(i), 2); 
+                       else
+                           digitalWrite(a, pins(i), 1); 
+                       end
+                     end
+                end
+                
                 disp('Player 1 Wins !!!');
                 run=0;
+                
             elseif (ply2w==1)
-                title('Player 2 Wins !!!','fontsize',20,'color', 'red');
+                if(drawP)
+                    title('Player 2 Wins !!!','fontsize',20,'color', 'red');
+                end
+                
+                if(debug==0)
+                    pause(2);
+                    for i=1:9
+                       if (ply2m(i)==1)
+                           digitalWrite(a, pins(i), 2); 
+                       else
+                           digitalWrite(a, pins(i), 1); 
+                       end
+                    end
+                end
                 disp('Player 2 Wins !!!');
                 run=0;
 
             elseif sum(sum(status))==9
-                title('Draw !!!','fontsize',20,'color', 'red');
+                if(drawP)
+                    title('Draw !!!','fontsize',20,'color', 'red');
+                end
+                
+                disp('Draw !!!');
+                
+                if (debug==0)
+                    pause(2);
+                    for i=1:9
+                       digitalWrite(a,pins(i), 2); 
+                    end
+                end
+                
                 run = 0;
                 disp('Draw !!!');
             else
                 run=1;
                 counter = counter +1;
            end
-           
+       
        end
        pause(.5);
    end
