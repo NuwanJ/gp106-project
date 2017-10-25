@@ -108,12 +108,12 @@ if (debug==0)
     digitalWrite(a, pinG , 0);
     digitalWrite(a, pinB , 0);
     
-    digitalWrite(a, ledColor , 1);
-  
+    %digitalWrite(a, ledColor , 1);
+    analogWrite(a, pinG, 250);
 end
 
 while run==1
-   disp(in);
+   %disp(in);
    if(debug==0)
        if playWithCom ==1 && player==1
            in = computeNext(ply1, ply2);
